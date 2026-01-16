@@ -10,9 +10,6 @@ const LeadsList = ({ onView }) => {
   const [pages, setPages] = useState(1);
 
   useEffect(() => {
-    fetchLeads();
-  }, [search, stage, page]);
-
   const fetchLeads = async () => {
     const res = await API.get("/api/leads", {
       params: { search, stage, page },
@@ -20,6 +17,10 @@ const LeadsList = ({ onView }) => {
     setLeads(res.data.leads);
     setPages(res.data.pages);
   };
+
+  fetchLeads();
+}, [search, stage, page]);
+
 
   return (
     <div style={{ padding: 20 }}>
